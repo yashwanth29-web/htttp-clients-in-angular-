@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="header">
+    <h2>Teachers List</h2>
+    <button class="btn" (click)="openAddForm()">Add Teacher</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Subject</th>
+        <th>Qualification</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let teacher of teacherData">
+        <td>{{ teacher.name }}</td>
+        <td>{{ teacher.subject }}</td>
+        <td>{{ teacher.qualification }}</td>
+        <td>{{ teacher.email }}</td>
+        <td>
+          <button class="btn edit" (click)="editInformation(teacher)">Edit</button>
+          <button class="btn delete" (click)="deleteInformation(teacher.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="showAddPopup" class="form-wrapper">
+  <div class="form-box">
+    <h3>{{ formHeader }}</h3>
+
+    <label>Name:</label>
+    <input type="text" [(ngModel)]="name" />
+
+    <label>Subject:</label>
+    <input type="text" [(ngModel)]="subject" />
+
+    <label>Qualification:</label>
+    <input type="text" [(ngModel)]="qualification" />
+
+    <label>Email:</label>
+    <input type="email" [(ngModel)]="email" />
+
+    <div class="buttons">
+      <button class="btn save" (click)="saveTeacher()">Save</button>
+      <button class="btn cancel" (click)="onCancel()">Cancel</button>
+    </div>
+  </div>
+</div>

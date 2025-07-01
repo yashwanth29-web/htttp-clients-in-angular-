@@ -1,0 +1,62 @@
+<!-- Principal Table -->
+<div class="container mob-table fade-in">
+  <div class="headers">
+    <h2 class="table-title">Principal Details</h2>
+    <button class="btn shiny-button" (click)="openAddForm()">Add Principal</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>tenure</th>
+        <th>salary</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      <tr *ngFor="let user of principalData">
+        <td>{{ user.name }}</td>
+        <td>{{ user.tenure }}</td>
+        <td>{{ user.salary }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <button class="btn editbut" (click)="editInformation(user)">Edit</button>
+          <button class="btn deletebut" (click)="deleteInformation(user.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Add/Edit Form Popup -->
+<div *ngIf="showAddPopup || showEditPopup" class="form-wrapper">
+  <div class="principal-form scale-in">
+    <h2 class="text-center text-info">{{ formHeader }}</h2>
+
+    <div class="group">
+      <label>Name:</label>
+      <input type="text" class="formControl" [(ngModel)]="name">
+    </div>
+
+    <div class="group">
+      <label>tenure:</label>
+      <input type="text" class="formControl" [(ngModel)]="tenure">
+    </div>
+
+    <div class="group">
+      <label>salary:</label>
+      <input type="text" class="formControl" [(ngModel)]="salary">
+    </div>
+
+    <div class="group">
+      <label>Email:</label>
+      <input type="email" class="formControl" [(ngModel)]="email">
+    </div>
+
+    <div class="buttons">
+      <button class="btn submit shiny-button" (click)="savePrincipal()">Save</button>
+      <button class="btn cancel" (click)="resetForm()">Cancel</button>
+    </div>
+  </div>
+</div>

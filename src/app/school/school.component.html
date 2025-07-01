@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="header">
+    <h2>School Details</h2>
+    <button class="btn" (click)="openAddForm()">Add School</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Established</th>
+        <th>Website</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let school of schoolData">
+        <td>{{ school.name }}</td>
+        <td>{{ school.address }}</td>
+        <td>{{ school.established }}</td>
+        <td>{{ school.website }}</td>
+        <td>
+          <button class="btn edit" (click)="editInformation(school)">Edit</button></td>
+          <td>
+          <button class="btn delete" (click)="deleteInformation(school.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- <div *ngIf="showAddPopup">
+    <h1>hello world! bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</h1>
+</div> -->
+
+<!-- Popup Form -->
+
+<div *ngIf="showAddPopup" class="form-wrapper">
+  <div class="form-box">
+    <h3>{{ formHeader }}</h3>
+
+    <label>Name:</label>
+    <input type="text" [(ngModel)]="name">
+
+    <label>Address:</label>
+    <input type="text" [(ngModel)]="address">
+
+    <label>Established:</label>
+    <input type="text" [(ngModel)]="established">
+
+    <label>Website:</label>
+    <input type="email" [(ngModel)]="website">
+
+    <div class="buttons">
+      <button class="btn save" (click)="saveSchool()">Save</button>
+<button class="btn cancel" (click)="onCancel()">Cancel</button>
+    </div>
+  </div>
+</div>

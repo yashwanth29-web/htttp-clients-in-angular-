@@ -1,0 +1,53 @@
+<div class="container mob-table">
+  <div class="headers">
+    <h2 class="table-title">Students List</h2>
+    <button class="btn" (click)="openAddForm()">Add Student</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Subject</th>
+        <th>Class</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      <tr *ngFor="let student of studentsData">
+        <td>{{ student.name }}</td>
+        <td>{{ student.age }}</td>
+        <td>{{ student.subject }}</td>
+        <td>{{ student.class || student.className }}</td>
+        <td>
+          <button class="editbut" (click)="editStudent(student)">Edit</button>
+          <button class="deletebut" (click)="deleteStudent(student.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Add/Edit Student Popup -->
+<div *ngIf="showAddPopup" class="form-wrapper">
+  <div class="form-box">
+    <h3>{{ formHeader }}</h3>
+    <label>Name:</label>
+    <input type="text" [(ngModel)]="name">
+
+    <label>Age:</label>
+    <input type="text" [(ngModel)]="age">
+
+    <label>Subject:</label>
+    <input type="text" [(ngModel)]="subject">
+
+    <label>Class:</label>
+    <input type="text" [(ngModel)]="className">
+
+    <div class="buttons">
+      <button class="btn save" (click)="saveStudent()">Save</button>
+      <button class="btn cancel" (click)="resetForm()">Cancel</button>
+    </div>
+  </div>
+</div>
